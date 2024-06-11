@@ -4,7 +4,7 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
-class FACELOADING:
+class Faceloading:
     def __init__(self, directory):
         self.directory = directory
         self.target_size = (160,160)
