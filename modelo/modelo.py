@@ -4,6 +4,7 @@ import os
 from keras_facenet import FaceNet
 import numpy as np
 
+
 #SVM
 from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC
@@ -11,8 +12,6 @@ from sklearn.metrics import accuracy_score
 
 
 from sklearn.preprocessing import LabelEncoder
-from keras.models import load_model
-from PIL import Image
 from sklearn.cluster import KMeans
 import pickle
 import matplotlib.pyplot as plt
