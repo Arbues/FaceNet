@@ -1,0 +1,9 @@
+CREATE TABLE IF NOT EXISTS face_events (
+    id SERIAL PRIMARY KEY,
+    x INT NOT NULL,
+    y INT NOT NULL,
+    w INT NOT NULL,
+    h INT NOT NULL,
+    person_id VARCHAR(255) NOT NULL,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

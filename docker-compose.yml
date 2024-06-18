@@ -1,0 +1,38 @@
+services:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5432:5432"
+    volumes:
+#      - db_data:/var/lib/postgresql/data
+      - ./init_db.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - localnet
+
+  face_recognition:
+    build: .
+    environment:
+      - IP_CAMERA_URL=rtsp://acecom:1964@192.168.0.101:8080/h264_ulaw.sdp
+      - DB_HOST=db
+      - DB_NAME=mydatabase
+      - DB_USER=postgres
+      - DB_PASSWORD=mysecretpassword
+#    network_mode: "host"
+    depends_on:
+      - db
+    networks:
+      - localnet
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [ gpu ]
+    runtime: nvidia
+
+networks:
+  localnet:
+    driver: bridge
