@@ -46,8 +46,8 @@ haarcascade = cv.CascadeClassifier("haarcascade_frontalface_default.xml")
 model = pickle.load(open("kmeans_model_160x160.pkl", 'rb'))
 
 #%% WHILE LOOP
-# ip_camera_url = os.getenv('CAMERA_URL')
-ip_camera_url = "rtsp://acecom:1964@192.168.1.19:8080/h264_ulaw.sdp"
+ip_camera_url = os.getenv('CAMERA_URL')
+# ip_camera_url = "rtsp://acecom:1964@192.168.1.19:8080/h264_ulaw.sdp"
 while True:
     cap = cv.VideoCapture(ip_camera_url)
     # cap = cv.VideoCapture(0)

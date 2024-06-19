@@ -14,9 +14,9 @@ services:
       - localnet
 
   face_recognition:
-    build: .
+    image: alejandroqo/facenet-service
     environment:
-      - IP_CAMERA_URL=rtsp://acecom:1964@192.168.0.101:8080/h264_ulaw.sdp
+      - CAMERA_URL=rtsp://acecom:1964@192.168.1.19:8080/h264_ulaw.sdp
       - DB_HOST=db
       - DB_NAME=mydatabase
       - DB_USER=postgres
@@ -32,6 +32,15 @@ services:
           devices:
             - capabilities: [ gpu ]
     runtime: nvidia
+  llm_service:
+    image: alejandroqo/llm-service-image
+    environment:
+      - GROQ_API_KEY=<replaceWithToken>
+    #    network_mode: "host"
+    ports:
+      - "8080:8080"
+    networks:
+      - localnet
 
 networks:
   localnet:
